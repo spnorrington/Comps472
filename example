@@ -1,0 +1,22 @@
+virtual void addNode(N node)
+{
+    // Scan the stack to check if this node already exists
+    stack<N> tempStack = nodeStack;
+    while (!tempStack.empty()) {
+        if (tempStack.top() == node) {
+            // Node already exists, do not add again
+            return;
+        }
+        tempStack.pop();
+    }
+
+    // If not found in stack, proceed to add node
+    NodeEntry *ne = new NodeEntry();
+    ne->node = node;
+    ne->index = numNodes;
+    nodes[numNodes] = ne;
+    numNodes++;
+
+    // Push this node onto the stack
+    nodeStack.push(node);
+}
